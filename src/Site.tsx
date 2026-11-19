@@ -126,11 +126,12 @@ function PageIntro({ eyebrow, title, copy, icon }: { eyebrow: string; title: Rea
   );
 }
 
-const services = [
+const services: { number: string; title: string; desc: string; icon: React.ReactNode; image?: string; imageAlt?: string }[] = [
   { number: '01', title: 'Consultations & soins courants', desc: 'Évaluation bucco-dentaire, diagnostic et soins courants selon vos besoins.', icon: <Stethoscope /> },
   { number: '02', title: 'Extractions & blanchiment', desc: 'Proposés selon l’indication clinique et l’évaluation du praticien.', icon: <Sparkles /> },
   { number: '03', title: 'Prothèses dentaires', desc: 'Des solutions définies selon votre situation et le plan de soins retenu.', icon: <ShieldCheck /> },
-  { number: '04', title: 'Orthodontie', desc: 'Un accompagnement après évaluation, selon le plan adapté.', icon: <Heart /> },
+  { number: '04', title: 'Orthodontie', desc: 'Un accompagnement après évaluation, selon le plan adapté.', icon: <Heart />, image: `${import.meta.env.BASE_URL}images/orthodontie.webp`, imageAlt: 'Gros plan illustratif d’un traitement orthodontique avec bagues dentaires' },
+  { number: '05', title: 'Implant dentaire', desc: 'Une solution envisagée après évaluation clinique et selon le plan de soins adapté.', icon: <ShieldCheck />, image: `${import.meta.env.BASE_URL}images/implant-dentaire.webp`, imageAlt: 'Modèle pédagogique montrant un implant dentaire' },
 ];
 
 export function HomePage() {
@@ -191,8 +192,8 @@ export function ServicesPage() {
     <>
       <PageIntro eyebrow="LES SOINS PROPOSÉS" title={<>Des soins<br />à chaque <em>besoin.</em></>} copy="Les soins sont organisés selon votre situation et l’évaluation du praticien. Les options vous sont expliquées avant d’établir le plan adapté." icon={<Stethoscope size={42} strokeWidth={1.15} />} />
       <section className="section service-page-body"><div className="section-heading"><div><Eyebrow>PRENDRE LE TEMPS DE L’ÉVALUATION</Eyebrow><h2>Un accompagnement<br /><em>adapté à votre situation.</em></h2></div><p>Les indications de soin sont définies avec le praticien. Le cabinet propose plusieurs types de prise en charge.</p></div>
-        <div className="service-detail-grid">{services.map((service, index) => <Reveal key={service.number} className={index % 2 ? 'reveal-late' : ''}><article className="service-detail-card"><div className="detail-top"><span>{service.number}</span><span className="service-icon">{service.icon}</span></div><h3>{service.title}</h3><p>{service.desc}</p><span className="detail-rule" /></article></Reveal>)}</div>
-        <div className="care-note"><span className="care-note-icon"><ShieldCheck size={19} /></span><p><strong>Une indication au cas par cas.</strong><br />Les extractions et le blanchiment sont proposés uniquement selon l’indication clinique et l’évaluation du praticien. Les prothèses et l’orthodontie sont déterminées après évaluation et selon un plan adapté.</p></div>
+        <div className="service-detail-grid">{services.map((service, index) => <Reveal key={service.number} className={index % 2 ? 'reveal-late' : ''}><article className={`service-detail-card${service.image ? ' service-detail-card--with-image' : ''}`}>{service.image && <img className="service-detail-image" src={service.image} alt={service.imageAlt} loading="lazy" />}<div className="detail-top"><span>{service.number}</span><span className="service-icon">{service.icon}</span></div><h3>{service.title}</h3><p>{service.desc}</p><span className="detail-rule" /></article></Reveal>)}</div>
+        <div className="care-note"><span className="care-note-icon"><ShieldCheck size={19} /></span><p><strong>Une indication au cas par cas.</strong><br />Les extractions et le blanchiment sont proposés uniquement selon l’indication clinique. Les prothèses, l’orthodontie et les implants sont envisagés après évaluation du praticien et selon un plan adapté.</p></div>
       </section>
       <section className="dark-cta"><div><Eyebrow light>VOTRE PARCOURS COMMENCE PAR L’ÉCHANGE</Eyebrow><h2>Parlons de votre<br /><em>motif de visite.</em></h2></div><Link className="button button-light" to="/cabinet">Se renseigner au cabinet <ArrowUpRight size={17} /></Link></section>
     </>

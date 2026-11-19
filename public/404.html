@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      const base = '/cabinet-dentaire-sissoko';
+      const route = location.pathname.slice(base.length) + location.search + location.hash;
+      location.replace(`${base}/?github-pages-route=${encodeURIComponent(route || '/')}`);
+    </script>
+  </head>
+  <body></body>
+</html>

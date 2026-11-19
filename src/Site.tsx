@@ -6,8 +6,8 @@ import {
 } from 'lucide-react';
 const ToothExplorer = lazy(() => import('./components/ToothExplorer'));
 
-const heroPhoto = '/manus-storage/async-images/TU9d3jqyS91tZoF0DMgFGp/image-1.webp';
-const teamPhoto = '/manus-storage/async-images/TU9d3jqyS91tZoF0DMgFGp/image-2.webp';
+const heroPhoto = `${import.meta.env.BASE_URL}images/soins-dentaires.webp`;
+const teamPhoto = `${import.meta.env.BASE_URL}images/equipe-dentaire.webp`;
 
 function BrandMark() {
   return (
